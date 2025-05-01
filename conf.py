@@ -71,10 +71,11 @@ if mpi4py is not None:
         ),
     ]
     # set compiler
-    os.environ["CC"] = mpi4py.get_config()["mpicc"]
+    # os.environ["CC"] = mpi4py.get_config()["mpicc"]
+    os.environ["CC"] = '/usr/bin/mpicc'
     # set linker to mpi
     os.environ["LDSHARED"] = " ".join(
-        [mpi4py.get_config()["mpicc"]]
+        [os.environ["CC"]]
         + sysconfig.get_config_var("LDSHARED").split()[1:]
     )
 
